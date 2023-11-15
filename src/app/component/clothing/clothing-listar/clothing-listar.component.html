@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <br/>
+    <h2 style="text-align: center;">Lista de Prenda</h2>
+    <div style="text-align: right;">
+      <button mat-raised-button color="primary" routerLink="">Nuevo</button>
+    </div>
+    <mat-form-field>
+      <input matInput (keyup)="filter($event)" placeholder="buscar"/>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="idPrenda">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{element.idClothing}}</td>
+      </ng-container>
+      <ng-container matColumnDef="temporada">
+        <th mat-header-cell *matHeaderCellDef>Temporada</th>
+        <td mat-cell *matCellDef="let element">{{element.season.seasonName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="textura">
+        <th mat-header-cell *matHeaderCellDef>Textura</th>
+        <td mat-cell *matCellDef="let element">{{element.texture.textureName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef>Color</th>
+        <td mat-cell *matCellDef="let element">{{element.color}}</td>
+      </ng-container>
+      <ng-container matColumnDef="evento">
+        <th mat-header-cell *matHeaderCellDef>Evento</th>
+        <td mat-cell *matCellDef="let element">{{element.event}}</td>
+      </ng-container>
+      <ng-container matColumnDef="catalogo">
+        <th mat-header-cell *matHeaderCellDef>Catalogo</th>
+        <td mat-cell *matCellDef="let element">{{element.catalog}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tienda">
+        <th mat-header-cell *matHeaderCellDef>Tienda</th>
+        <td mat-cell *matCellDef="let element">{{element.store}}</td>
+      </ng-container>
+      <ng-container matColumnDef="closet">
+        <th mat-header-cell *matHeaderCellDef>Closet</th>
+        <td mat-cell *matCellDef="let element">{{element.closet}}</td>
+      </ng-container>
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let element">{{element.brand}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tipoprenda">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Prenda</th>
+        <td mat-cell *matCellDef="let element">{{element.typeclothing}}</td>
+      </ng-container>
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="warn"
+            [routerLink]="[]"
+          >
+            Actualizar
+          </button>
+        </td></ng-container
+      >
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="eliminar(element.idClothing)"
+          >
+            Eliminar
+          </button>
+        </td></ng-container
+      >
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    showFirstLastButtons
+  ></mat-paginator>
+  </div>
+</body>
+</html>

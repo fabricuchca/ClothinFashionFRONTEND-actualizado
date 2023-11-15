@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Tipos de Prenda</h2>
+      <br/>
+      <form [formGroup]="form" (submit)="registrar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>IDTipoPrenda</mat-label>
+          <input matInput placeholder="idTypeClothing" formControlName="idTypeClothing" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre Tipo Prenda</mat-label>
+          <input
+            matInput
+            placeholder="nameTypeClothing"
+            formControlName="nameTypeClothing"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('nameTypeClothing')?.errors?.['required']"
+          >
+            LEl nombre del tipo de prenda es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <mat-label>Talla</mat-label>
+          <mat-select formControlName="size">
+            <mat-option *ngFor="let t of tallas" [value]="t.value">
+              {{ t.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="obtenerControlCampo('size')?.errors?.['required']">
+            La talla es obligatoria
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <mat-label>Generos</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option *ngFor="let g of generos" [value]="g.value">
+              {{ g.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('gender')?.errors?.['required']"
+          >
+            El genero es obligatorio
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripcion</mat-label>
+          <input
+            matInput
+            placeholder="descripcion"
+            formControlName="description"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('description')?.errors?.['required']"
+          >
+            La descripcion del TipoPrenda es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <mat-label>Categorias</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let c of categoria" [value]="c.value">
+              {{ c.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('category')?.errors?.['required']"
+          >
+            La categoria es obligatoria
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Ocasion</mat-label>
+          <input matInput placeholder="ocasion" formControlName="occasion" />
+          <mat-error
+            *ngIf="obtenerControlCampo('occasion')?.errors?.['required']"
+          >
+            La ocasion es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/typeClothings">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

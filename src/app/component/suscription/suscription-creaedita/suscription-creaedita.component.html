@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Suscripciones</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idSuscription</mat-label>
+          <input matInput placeholder="Id" formControlName="idSuscription" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Monto</mat-label>
+          <input matInput placeholder="10.00" formControlName="amount" />
+          <mat-error
+            *ngIf="obtenerControlCampo('amount')?.errors?.['required']"
+          >
+            El monto es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Inicio Suscripción</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="startSuscription"
+            [max]="maxFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('startSuscription')?.errors?.['required']"
+          >
+            La fecha es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado de Suscripción</mat-label>
+          <input
+            matInput
+            placeholder="estado"
+            formControlName="state"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('state')?.errors?.['required']"
+          >
+            El estilo del outfit es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Fecha de Pago</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="paymentDate"
+            [max]="maxFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('paymentDate')?.errors?.['required']"
+          >
+            La fecha es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="users">
+            <mat-option *ngFor="let u of listaUsers" [value]="u.idUser">{{u.username}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('users')?.errors?.['required']"
+          >
+            El estilo del outfit es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/suscriptions">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Colores</h2>
+      <form [formGroup]="form" (submit)="registrar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>ID Color</mat-label>
+          <input matInput placeholder="ID" formControlName="idColor" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre Color</mat-label>
+          <input matInput placeholder="Name" formControlName="nameColor" />
+          <mat-error
+            *ngIf="obtenerControlCampo('nameColor')?.errors?.['required']"
+          >
+            El nombre del Color es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripcion</mat-label>
+          <input
+            matInput
+            placeholder="descripcion"
+            formControlName="description"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('description')?.errors?.['required']"
+          >
+            La descripcion del Color es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+
+        <mat-form-field>
+          <mat-label>Tipos</mat-label>
+          <mat-select formControlName="typeColor">
+            <mat-option *ngFor="let t of tiposColor" [value]="t.value">
+              {{ t.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('typeColor')?.errors?.['required']"
+          >
+            El Tipo de Color es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+
+
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/colors">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

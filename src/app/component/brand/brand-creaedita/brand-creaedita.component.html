@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Marcas</h2>
+      <form [formGroup]="form" (submit)="registrar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Id Marca</mat-label>
+          <input matInput placeholder="ID" formControlName="idBrand" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width" >
+          <mat-label>Nombre Marca</mat-label>
+          <input matInput placeholder="name" formControlName="nameBrand" />
+          <mat-error
+            *ngIf="obtenerControlCampo('nameBrand')?.errors?.['required']"
+          >
+            El nombre de la marca es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <mat-label>Marcas de Paises</mat-label>
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let p of paises" [value]="p.value">
+              {{ p.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('country')?.errors?.['required']"
+          >
+            El País de la Marca es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width" >
+          <mat-label>Sitio web</mat-label>
+          <input matInput placeholder="website" formControlName="webSite" />
+          <mat-error
+            *ngIf="obtenerControlCampo('webSite')?.errors?.['required']"
+          >
+            El sitio web de la marca es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width" >
+          <mat-label>Descripcion</mat-label>
+          <input
+            matInput
+            placeholder="descripcion"
+            formControlName="description"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('description')?.errors?.['required']"
+          >
+            La descripcion de la marca es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width" >
+          <mat-label>Tags</mat-label>
+          <input matInput placeholder="tag" formControlName="tags" />
+          <mat-error *ngIf="obtenerControlCampo('tags')?.errors?.['required']">
+            Los tags son obligatorios.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/brands">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

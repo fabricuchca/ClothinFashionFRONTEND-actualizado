@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de Temporadas</h2>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.idSeason }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nameSeason }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="inicio">
+          <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+          <td mat-cell *matCellDef="let element">{{ element.startDate | date : "d MMMM y"  }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fin">
+          <th mat-header-cell *matHeaderCellDef>Fecha de Fin</th>
+          <td mat-cell *matCellDef="let element">{{ element.endDate | date : "d MMMM y"  }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let element">{{ element.descriptionSeason  }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="accent"
+              [routerLink]="['ediciones', element.idSeason]"
+            >
+            <mat-icon>edit</mat-icon>
+          </button>
+          </td></ng-container
+        >
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="eliminar(element.idSeason)"
+            >
+            <mat-icon>delete</mat-icon>
+          </button>
+          </td></ng-container
+        >
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

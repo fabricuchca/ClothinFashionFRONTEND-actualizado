@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Eventos</h2>
+      <form [formGroup]="form" (submit)="registrar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>ID Evento</mat-label>
+          <input matInput placeholder="ID" formControlName="idEvent" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Tema</mat-label>
+          <input matInput placeholder="theme" formControlName="theme" />
+          <mat-error
+            *ngIf="obtenerControlCampo('theme')?.errors?.['required']"
+          >
+            El tema del evento es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripcion del evento</mat-label>
+          <input
+            matInput
+            placeholder="descripcion"
+            formControlName="descriptionEvent"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('descriptionEvent')?.errors?.['required']"
+          >
+            La descripcion del Evento es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/events">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

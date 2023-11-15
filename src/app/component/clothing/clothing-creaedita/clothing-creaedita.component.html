@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Prendas</h2>
+      <form [formGroup]="form" (submit)="registrar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>ID Prenda</mat-label>
+          <input matInput placeholder="ID" formControlName="idClothing" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Temporada</mat-label>
+          <input matInput placeholder="Season" formControlName="season" />
+          <mat-error
+            *ngIf="obtenerControlCampo('season')?.errors?.['required']"
+          >
+            La temporada es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Textura</mat-label>
+          <mat-select formControlName="texture">
+            <mat-option *ngFor="let o of listaTexturas" [value]="o.idTexture">{{o.nameTexture}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('texture')?.errors?.['required']"
+          >
+            La textura de la prenda es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Color</mat-label>
+            <mat-select formControlName="color">
+              <mat-option *ngFor="let o of listaColores" [value]="o.idColor">{{o.nameColor}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('color')?.errors?.['required']"
+            >
+              El color de la prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>evento</mat-label>
+            <mat-select formControlName="event">
+              <mat-option *ngFor="let o of listaEventos" [value]="o.idEvent">{{o.descriptionEvent}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('event')?.errors?.['required']"
+            >
+              El tipo de evento de la prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>catalogo</mat-label>
+            <mat-select formControlName="catalog">
+              <mat-option *ngFor="let o of listaCatalogos" [value]="o.idCatalog">{{o.idCatalog}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('catalog')?.errors?.['required']"
+            >
+              El catalogo de la prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br /><mat-form-field class="example-full-width">
+            <mat-label>tienda</mat-label>
+            <mat-select formControlName="store">
+              <mat-option *ngFor="let o of listaTiendas" [value]="o.idStore">{{o.nameStore}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('store')?.errors?.['required']"
+            >
+              La tienda de la prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br /><mat-form-field class="example-full-width">
+            <mat-label>closet</mat-label>
+            <mat-select formControlName="closet">
+              <mat-option *ngFor="let o of listaArmarios" [value]="o.idCloset">{{o.nameCloset}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('closet')?.errors?.['required']"
+            >
+              El closet de la prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="brand">
+              <mat-option *ngFor="let o of listaMarcas" [value]="o.idBrand">{{o.nameBrand}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('brand')?.errors?.['required']"
+            >
+              La marca de la prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br /><mat-form-field class="example-full-width">
+            <mat-label>Tipo de prenda</mat-label>
+            <mat-select formControlName="typeClothing">
+              <mat-option *ngFor="let o of listaTipos" [value]="o.idTypeClothing">{{o.description}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('typeClothing')?.errors?.['required']"
+            >
+              El tipo de prenda es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/clothings">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Comentarios</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idComments</mat-label>
+          <input matInput placeholder="Id" formControlName="idComments" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Título</mat-label>
+          <input matInput placeholder="Título" formControlName="titleComment" />
+          <mat-error
+            *ngIf="obtenerControlCampo('titleComment')?.errors?.['required']"
+          >
+            El comentario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Comentario</mat-label>
+          <input matInput placeholder="Comentario" formControlName="descriptionComment" />
+          <mat-error
+            *ngIf="obtenerControlCampo('descriptionComment')?.errors?.['required']"
+          >
+            El comentario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Puntaje</mat-label>
+          <mat-select formControlName="score">
+            <mat-option value=1>1</mat-option>
+            <mat-option value=2>2</mat-option>
+            <mat-option value=3>3</mat-option>
+            <mat-option value=4>4</mat-option>
+            <mat-option value=5>5</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('score')?.errors?.['required']"
+          >
+            El puntaje es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Outfit</mat-label>
+          <mat-select formControlName="outfit">
+            <mat-option *ngFor="let o of listaOutfits" [value]="o.idOutfit">{{o.nameOutfit}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('outfit')?.errors?.['required']"
+          >
+            El dueño del armario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Autor</mat-label>
+          <mat-select formControlName="users">
+            <mat-option *ngFor="let u of listaUsers" [value]="u.idUser">{{u.username}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('users')?.errors?.['required']"
+          >
+            El dueño del armario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="dateComment"
+            [max]="maxFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('dateComment')?.errors?.['required']"
+          >
+            La fecha es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/comments">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

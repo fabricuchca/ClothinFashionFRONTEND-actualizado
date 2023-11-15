@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Tiendas</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="Id" formControlName="idStore" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Tienda</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nameStore" />
+          <mat-error
+            *ngIf="obtenerControlCampo('nameStore')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Método de pago</mat-label>
+          <mat-select formControlName="paymentMethod">
+            <mat-option value="Tarjeta">Tarjeta</mat-option>
+            <mat-option value="Efectivo">Efectivo</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('paymentMethod')?.errors?.['required']"
+          >
+            El método de pago es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Latitud</mat-label>
+          <input
+            matInput
+            placeholder="000.000"
+            formControlName="latitude"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('latitude')?.errors?.['required']"
+          >
+            La latitud es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Dirección</mat-label>
+          <input matInput placeholder="direccion" formControlName="addressStore" />
+          <mat-error
+            *ngIf="obtenerControlCampo('addressStore')?.errors?.['required']"
+          >
+            La dirección es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Código Postal</mat-label>
+          <input matInput placeholder="00000" formControlName="postalCode" />
+          <mat-error
+            *ngIf="obtenerControlCampo('postalCode')?.errors?.['required']"
+          >
+            El código postal es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Teléfono</mat-label>
+          <input matInput placeholder="000000000" formControlName="telephoneStore" />
+          <mat-error
+            *ngIf="obtenerControlCampo('telephoneStore')?.errors?.['required']"
+          >
+            El teléfono es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Longitud</mat-label>
+          <input
+            matInput
+            placeholder="000.000"
+            formControlName="longitude"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('longitude')?.errors?.['required']"
+          >
+            La longitud es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Catálogo</mat-label>
+          <input matInput placeholder="Catálogo id" formControlName="catalogStore" />
+          <mat-error
+            *ngIf="obtenerControlCampo('catalogStore')?.errors?.['required']"
+          >
+            El catálogo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/stores">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

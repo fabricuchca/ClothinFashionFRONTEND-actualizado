@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de Outfits</h2>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.idOutfit }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="outfit">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nameOutfit }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="estilo">
+          <th mat-header-cell *matHeaderCellDef>Estilo</th>
+          <td mat-cell *matCellDef="let element">{{ element.styleOutfit }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="catalogo">
+          <th mat-header-cell *matHeaderCellDef>Catálogo</th>
+          <td mat-cell *matCellDef="let element">{{ element.catalog.idCatalog }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="ropas">
+          <th mat-header-cell *matHeaderCellDef>Número de Prendas</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.clothesNumber }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha de publicación</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.creationDate | date : "d MMMM y" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="accent"
+              [routerLink]="['ediciones', element.idOutfit]"
+            >
+            <mat-icon>edit</mat-icon>
+          </button>
+          </td></ng-container
+        >
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="eliminar(element.idOutfit)"
+            >
+            <mat-icon>delete</mat-icon>
+          </button>
+          </td></ng-container
+        >
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

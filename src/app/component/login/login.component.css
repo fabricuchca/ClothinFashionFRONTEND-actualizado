@@ -1,0 +1,53 @@
+/* Estilos generales */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos del contenedor */
+.container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* Estilos del logo */
+img {
+  width: 200px;
+  height: auto;
+}
+
+/* Estilos de los campos de entrada */
+mat-form-field {
+  display: block;
+  margin: 10px 0;
+}
+
+mat-label {
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Estilos del botón */
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #444;
+}
